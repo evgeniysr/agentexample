@@ -37,6 +37,7 @@
 
     client.loginImplicitGrant('133d9e41-666a-418e-a628-24f2b50c3655', redirectUri, {state:`environment=${myClientApp.pcEnvironment}`})
       .then((data) => {
+        console.log('login implicit grant');
         console.log(data);
         window.history.replaceState(null, '', `${pathname}?${data.state}`);
         // Do authenticated things
