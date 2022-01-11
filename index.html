@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agent Script</title>
+    <script src="https://sdk-cdn.mypurecloud.com/client-apps/2.3.0/purecloud-client-app-sdk-70ec0c8b.min.js"></script>
+</head>
+<body>
+
+<script>
+  // Note: You may need to use another event (e.g. load ) depending on how you load the script.
+  document.addEventListener('DOMContentLoaded', function () {
+    let ClientApp = window.purecloud.apps.ClientApp;
+    let myClientApp = new ClientApp({
+      pcEnvironmentQueryParam: 'pcEnvironment'
+    });
+    myClientApp.alerting.showToastPopup('Hello', 'Genesys Cloud');
+  });
+</script>
+</body>
+</html>
