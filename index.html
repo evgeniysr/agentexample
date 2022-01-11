@@ -9,31 +9,48 @@
 <body>
 
 <button id="clickme">click1</button>
+<button id="login">login</button>
 
 <script>
 
   let platformClient = window.require('platformClient');
   let myClientApp = null;
+  let {origin, href} = window.location;
+
+  const client = platformClient.ApiClient.instance;
+  client.setPersistSettings(true);
 
   // Note: You may need to use another event (e.g. load ) depending on how you load the script.
   document.addEventListener('DOMContentLoaded', function () {
     let ClientApp = window.purecloud.apps.ClientApp;
     myClientApp = new ClientApp({
-      pcEnvironmentQueryParam: 'pcEnvironment'
+      pcEnvironmentQueryParam: 'environment'
     });
 
     // console.log(JSON.stringify(myClientApp));
-    myClientApp.alerting.showToastPopup('Hello', 'Genesys Cloud');
+    // myClientApp.alerting.showToastPopup('Hello', 'Genesys Cloud');
+  });
+  document.getElementById("login").addEventListener('click', () => {
+
+    client.loginImplicitGrant('133d9e41-666a-418e-a628-24f2b50c3655', href)
+      .then((data) => {
+        console.log(data);
+        // Do authenticated things
+      })
+      .catch((err) => {
+        // Handle failure response
+        console.log(err);
+      });
   });
   document.getElementById("clickme").addEventListener('click', () => {
 
     console.log(window.location.href);
-    let conversationId = window.location.href.split('pcConversationId')[1].split('=')[1];
+    let conversationId = window.location.href.split('conversationId')[1].split('=')[1];
     console.log(conversationId);
     conversationId = conversationId.split('&')[0];
     console.log(conversationId);
 
-    myClientApp.conversations.showInteractionDetails(conversationId);
+    // myClientApp.conversations.showInteractionDetails(conversationId);
     myClientApp.conversations.proposeInteractionMessage("insert", "This is proposeInteractionMessage");
   });
 </script>
