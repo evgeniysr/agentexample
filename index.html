@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<button id="clickme">click</button>
+<button id="clickme">click1</button>
 
 <script>
 
@@ -28,11 +28,11 @@
   document.getElementById("clickme").addEventListener('click', () => {
 
     console.log(window.location.href);
-    const conversationId = window.location.href.split('pcConversationId')[1].split('=')[1];
-    console.log(conversationId);
+    // const conversationId = window.location.href.split('pcConversationId')[1].split('=')[1];
+    // console.log(conversationId);
 
-    myClientApp.conversations.showInteractionDetails(conversationId);
-    myClientApp.conversations.proposeInteractionMessage("insert", "This is proposeInteractionMessage");
+    // myClientApp.conversations.showInteractionDetails(conversationId);
+    // myClientApp.conversations.proposeInteractionMessage("insert", "This is proposeInteractionMessage");
   });
 </script>
 </body>
