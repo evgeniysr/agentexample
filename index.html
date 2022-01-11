@@ -3,18 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Agent Script</title>
+    <script src="https://sdk-cdn.mypurecloud.com/javascript/128.0.0/purecloud-platform-client-v2.min.js"></script>
     <script src="https://sdk-cdn.mypurecloud.com/client-apps/2.3.0/purecloud-client-app-sdk-70ec0c8b.min.js"></script>
 </head>
 <body>
 
+<button id="clickme">click</button>
+
 <script>
+
+  let platformClient = window.require('platformClient');
+  let myClientApp = null;
+
   // Note: You may need to use another event (e.g. load ) depending on how you load the script.
   document.addEventListener('DOMContentLoaded', function () {
     let ClientApp = window.purecloud.apps.ClientApp;
-    let myClientApp = new ClientApp({
+    myClientApp = new ClientApp({
       pcEnvironmentQueryParam: 'pcEnvironment'
     });
+
+    // console.log(JSON.stringify(myClientApp));
     myClientApp.alerting.showToastPopup('Hello', 'Genesys Cloud');
+  });
+  document.getElementById("clickme").addEventListener('click', () => {
+    const conversationId = window.location.href.split('pcConversationId')[1].split('=')[1];
+    console.log(conversationId);
+
+    myClientApp.conversations.showInteractionDetails(conversationId);
+    myClientApp.conversations.proposeInteractionMessage("insert", "This is proposeInteractionMessage");
   });
 </script>
 </body>
