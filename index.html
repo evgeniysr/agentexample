@@ -15,7 +15,9 @@
 
   let platformClient = window.require('platformClient');
   let myClientApp = null;
-  let {origin, href} = window.location;
+  let {origin, href, pathname} = window.location;
+  const redirectUri = origin + pathname;
+  console.log(redirectUri);
 
   const client = platformClient.ApiClient.instance;
   client.setPersistSettings(true);
@@ -32,7 +34,7 @@
   });
   document.getElementById("login").addEventListener('click', () => {
 
-    client.loginImplicitGrant('133d9e41-666a-418e-a628-24f2b50c3655', href)
+    client.loginImplicitGrant('133d9e41-666a-418e-a628-24f2b50c3655', redirectUri)
       .then((data) => {
         console.log(data);
         // Do authenticated things
