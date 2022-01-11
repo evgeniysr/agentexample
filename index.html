@@ -15,7 +15,7 @@
 
   let platformClient = window.require('platformClient');
   let myClientApp = null;
-  let {origin, href, pathname} = window.location;
+  let {origin, href, pathname, search} = window.location;
   const redirectUri = origin + pathname;
   console.log(redirectUri);
 
@@ -35,7 +35,7 @@
   });
   document.getElementById("login").addEventListener('click', () => {
 
-    client.loginImplicitGrant('133d9e41-666a-418e-a628-24f2b50c3655', redirectUri)
+    client.loginImplicitGrant('133d9e41-666a-418e-a628-24f2b50c3655', redirectUri, {state:`environment=${myClientApp.pcEnvironment}`})
       .then((data) => {
         console.log(data);
         // Do authenticated things
