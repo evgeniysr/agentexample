@@ -26,6 +26,8 @@
     myClientApp.alerting.showToastPopup('Hello', 'Genesys Cloud');
   });
   document.getElementById("clickme").addEventListener('click', () => {
+
+    console.log(window.location.href);
     const conversationId = window.location.href.split('pcConversationId')[1].split('=')[1];
     console.log(conversationId);
 
