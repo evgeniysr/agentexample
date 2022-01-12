@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Agent Script</title>
+    <!-- CSS only -->
     <script src="https://sdk-cdn.mypurecloud.com/javascript/128.0.0/purecloud-platform-client-v2.min.js"></script>
     <script src="https://sdk-cdn.mypurecloud.com/client-apps/2.3.0/purecloud-client-app-sdk-70ec0c8b.min.js"></script>
 </head>
 <body>
 
-<button id="clickme">click1</button>
+
+<button id="click">post</button>
 <button id="login">login</button>
 
 <script>
@@ -35,11 +37,11 @@
   });
   document.getElementById("login").addEventListener('click', () => {
 
-    client.loginImplicitGrant('133d9e41-666a-418e-a628-24f2b50c3655', redirectUri, {state:`environment=${myClientApp.pcEnvironment}`})
+    client.loginImplicitGrant('133d9e41-666a-418e-a628-24f2b50c3655', redirectUri)
       .then((data) => {
         console.log('login implicit grant');
         console.log(data);
-        window.history.replaceState(null, '', `${pathname}?${data.state}`);
+        // window.history.replaceState(null, '', `${pathname}?${data.state}`);
         // Do authenticated things
       })
       .catch((err) => {
